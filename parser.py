@@ -6,8 +6,8 @@ def read_maze(file_path: str) -> list[list[int]]:
     with open(file=file_path, encoding="utf_8") as file:
         dimensions_line = file.readline()
         dimensions = [int(number) for number in dimensions_line.strip().split(" ")]
-        width = int(dimensions[0])
-        height = int(dimensions[1])
+        width = dimensions[0]
+        height = dimensions[1]
         validate_maze_dimensions(width, height)
         lines = [line.replace("\n", "").replace("\r", "") for line in file.readlines()]
         check_line_amount_against_height(len(lines), height)
@@ -15,11 +15,10 @@ def read_maze(file_path: str) -> list[list[int]]:
         exit_count = 0
         for i, line in enumerate(lines):
             check_line_against_set_width(i, line, width)
-            characters = [char for char in line][0:width:1]
-            for c in characters:
-                if c == "S":
+            for char in line:
+                if char == "S":
                     exit_count += 1
-                if c == "E":
+                if char == "E":
                     entry_count += 1
 
         if entry_count != 1:
