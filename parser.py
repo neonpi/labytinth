@@ -9,7 +9,7 @@ def read_maze(file_path: str) -> list[list[int]]:
         width = int(dimensions[0])
         height = int(dimensions[1])
         validate_maze_dimensions(width, height)
-        lines = [line[0 : len(line) - 1] for line in file.readlines()]
+        lines = [line.replace("\n", "").replace("\r", "") for line in file.readlines()]
         check_line_amount_against_height(len(lines), height)
         entry_count = 0
         exit_count = 0
