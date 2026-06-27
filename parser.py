@@ -2,20 +2,18 @@ def read_maze(file_path: str) -> list[list[int]]:
     """
     Parse input files to an in-memory graph representation
     """
-    graph = [[1]] # TODO remove placeholder
+    graph = [[1]]  # TODO remove placeholder
     with open(file=file_path, encoding="utf_8") as file:
         dimensions_line = file.readline()
         dimensions = [int(number) for number in dimensions_line.strip().split(" ")]
         width = int(dimensions[0])
         height = int(dimensions[1])
         validate_maze_dimensions(width, height)
-        lines = [line[0:len(line) - 1] for line in file.readlines()]
+        lines = [line[0 : len(line) - 1] for line in file.readlines()]
         check_line_amount_against_height(len(lines), height)
-        i = 0
         entry_count = 0
         exit_count = 0
-        while i < len(lines):
-            line = lines[i]
+        for i, line in enumerate(lines):
             check_line_against_set_width(i, line, width)
             characters = [char for char in line][0:width:1]
             for c in characters:
@@ -23,7 +21,6 @@ def read_maze(file_path: str) -> list[list[int]]:
                     exit_count += 1
                 if c == "E":
                     entry_count += 1
-            i += 1
 
         if entry_count != 1:
             raise ValueError("There should be exactly one entry.")
