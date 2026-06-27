@@ -9,7 +9,7 @@ Trabalho prático da disciplina de Inteligência Artificial, DCC014, da Universi
 
 ## Formato de entrada
 
-O formato de entrada estabelecido para o programa segue a especificação descrita nesta seção. 
+O formato de entrada estabelecido para o programa segue a especificação descrita nesta seção.
 
 ### Cabeçalho
 
@@ -32,12 +32,12 @@ As demais linhas devem seguir o que foi especificado na primeira linha e possuir
   - Não deve haver espaços caminháveis nas bordas do labirinto, ou seja, as bordas só podem conter paredes, a entrada ou a saída
 - `E` para a entrada
   - Deve haver uma entrada e esta só pode ser posicionada em alguma extremidade do labirinto
-- `S` para a saída 
+- `S` para a saída
   - Analogamente, deve haver uma única saída e esta só pode ser posicionada em alguma extremidade do labirinto
 
 Seguir o que foi especificado na primeira linha significa conter uniformemente o número de linhas e colunas especificado. Assim, as linhas abaixo são inválidas:
 
-```
+```md
 E ######
 #    S
 ```
