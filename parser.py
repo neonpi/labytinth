@@ -16,10 +16,10 @@ def read_maze(file_path: str) -> list[list[int]]:
         for i, line in enumerate(lines):
             check_line_against_set_width(i, line, width)
             for char in line:
-                if char == "S":
-                    exit_count += 1
-                if char == "E":
+                if char == "A":
                     entry_count += 1
+                if char == "B":
+                    exit_count += 1
 
         if entry_count != 1:
             raise ValueError("There should be exactly one entry.")

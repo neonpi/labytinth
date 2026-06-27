@@ -29,13 +29,23 @@ As demais linhas devem seguir o que foi especificado na primeira linha e possuir
 
 - `#` para paredes
 - ` ` (espaço em branco) para espaços caminháveis (livres)
-  - Não deve haver espaços caminháveis nas bordas do labirinto, ou seja, as bordas só podem conter paredes, a entrada ou a saída
-- `E` para a entrada
-  - Deve haver uma entrada e esta só pode ser posicionada em alguma extremidade do labirinto
-- `S` para a saída 
-  - Analogamente, deve haver uma única saída e esta só pode ser posicionada em alguma extremidade do labirinto
+  - Não deve haver espaços caminháveis nas bordas do labirinto, ou seja, as bordas só podem conter paredes
+- `A` para a entrada
+  - A entrada deve estar posicionada no canto superior esquerdo do labirinto
+- `B` para a saída
+  - A saída deve estar posicionada no canto inferior direito do labirinto
 
 Seguir o que foi especificado na primeira linha significa conter uniformemente o número de linhas e colunas especificado. Assim, as linhas abaixo são inválidas:
+
+### Exemplo válido
+
+```text
+#######
+#A##  #
+# #   #
+#   #B#
+#######
+```
 
 ```
 E ######
