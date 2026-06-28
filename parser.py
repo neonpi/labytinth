@@ -20,12 +20,18 @@ def read_maze(file_path: str) -> Maze:
 
         for i, line in enumerate(lines):
             check_line_against_set_width(i, line, width)
+
             for j, char in enumerate(line):
+                if char not in ["A", "B", " ", "#"]:
+                    raise ValueError(
+                        "Only allowed characters in maze definition are: '#', 'A', 'B' and ' ' (blank space)"
+                    )
+
                 if char == "A":
                     entry_count += 1
                 if char == "B":
                     exit_count += 1
-                if char != "#":
+                if char == " ":
                     node = Node(i, j, len(nodes))
                     nodes.append(node)
 
