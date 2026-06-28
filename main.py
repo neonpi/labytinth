@@ -9,4 +9,7 @@ if len(sys.argv) == 1:
 else:
     input_file = sys.argv[1]
 
-maze = read_maze(input_file)
+try:
+    maze = read_maze(input_file)
+except FileNotFoundError:
+    print(f"Error: file '{input_file}' not found")
