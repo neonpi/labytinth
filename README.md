@@ -9,7 +9,7 @@ Trabalho prático da disciplina de Inteligência Artificial, DCC014, da Universi
 
 ## Formato de entrada
 
-O formato de entrada estabelecido para o programa segue a especificação descrita nesta seção. 
+O formato de entrada estabelecido para o programa segue a especificação descrita nesta seção.
 
 ### Cabeçalho
 
@@ -47,7 +47,7 @@ Seguir o que foi especificado na primeira linha significa conter uniformemente o
 #######
 ```
 
-```
+```text
 E ######
 #    S
 ```
