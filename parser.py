@@ -1,32 +1,42 @@
-def read_maze(file_path: str) -> list[list[int]]:
-    """
-    Parse input files to an in-memory graph representation
-    """
-    graph = [[1]]  # TODO remove placeholder
-    with open(file=file_path, encoding="utf_8") as file:
+from entities import Maze, Node
+
+
+def read_maze(file_path: str) -> Maze:
+    nodes: list[Node] = []
+    width: int
+    height: int
+
+    with open(file=file_path, mode="r", encoding="utf_8") as file:
         dimensions_line = file.readline()
         dimensions = [int(number) for number in dimensions_line.strip().split(" ")]
         width = dimensions[0]
         height = dimensions[1]
         validate_maze_dimensions(width, height)
+
         lines = [line.replace("\n", "").replace("\r", "") for line in file.readlines()]
         check_line_amount_against_height(len(lines), height)
         entry_count = 0
         exit_count = 0
+
         for i, line in enumerate(lines):
             check_line_against_set_width(i, line, width)
-            for char in line:
+            for j, char in enumerate(line):
                 if char == "A":
                     entry_count += 1
                 if char == "B":
                     exit_count += 1
+                if char != "#":
+                    node = Node(i, j, len(nodes))
+                    nodes.append(node)
 
-        if entry_count != 1:
-            raise ValueError("There should be exactly one entry.")
-        if exit_count != 1:
-            raise ValueError("There should be exactly one exit.")
+    if entry_count != 1:
+        raise ValueError("There should be exactly one entry.")
+    if exit_count != 1:
+        raise ValueError("There should be exactly one exit.")
 
-    return graph
+    maze = Maze(height=height, width=width, nodes=nodes)
+
+    return maze
 
 
 def check_line_amount_against_height(line_amount: int, height: int):
@@ -48,9 +58,6 @@ def check_line_against_set_width(position: int, line: str, width: int):
 
 
 def validate_maze_dimensions(width: int, height: int):
-    """
-    Checks if the dimensions set in the first line of the file passed as argument are valid
-    """
     if width < 1 or height < 1:
         raise ValueError(
             "Dimensions must be positive. W = {0}, H = {1} isn't allowed.".format(

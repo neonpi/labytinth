@@ -9,4 +9,4 @@ if len(sys.argv) == 1:
 else:
     input_file = sys.argv[1]
 
-graph = read_maze(input_file)
+maze = read_maze(input_file)
