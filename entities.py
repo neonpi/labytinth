@@ -3,6 +3,8 @@ from dataclasses import dataclass, field
 
 @dataclass
 class Node:
+    """A node representing a walkable spot in the maze."""
+
     i: int
     j: int
     label: int
@@ -15,6 +17,8 @@ def are_neighbors(node: Node, other: Node) -> bool:
 
 @dataclass
 class Maze:
+    """Maze represented as a graph with its recorded dimensions."""
+
     width: int
     height: int
     nodes: list[Node]
