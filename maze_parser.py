@@ -2,7 +2,7 @@ from entities import Maze, Node
 
 
 def read_maze(file_path: str) -> Maze:
-    """Reads from input file and loads creates the equivalent graph into memory.
+    """Reads from input file and creates the equivalent graph.
 
     Arguments:
     file_path -- the absolute or relative file path of the file defining the desired maze
