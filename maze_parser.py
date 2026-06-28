@@ -5,7 +5,7 @@ def read_maze(file_path: str) -> Maze:
     """Reads from input file and loads creates the equivalent graph into memory.
 
     Arguments:
-    file_path -- the absolute file path of the file defining the desired maze
+    file_path -- the absolute or relative file path of the file defining the desired maze
     """
     nodes: list[Node] = []
     width: int
