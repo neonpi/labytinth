@@ -1,6 +1,6 @@
 import sys
 
-from parser import read_maze
+from maze_parser import read_maze
 
 input_file = ""
 
