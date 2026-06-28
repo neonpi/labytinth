@@ -35,4 +35,11 @@ class Maze:
                     other.edges.append(node)
 
 
-        
+def is_start(maze: Maze, node: Node) -> bool:
+    """Checks if the node is the start of the given maze"""
+    return maze.nodes.index(node) == 0
+
+
+def is_end(maze: Maze, node: Node) -> bool:
+    """Checks if the node is the end of the given maze"""
+    return maze.nodes.index(node) == len(maze.nodes) - 1
