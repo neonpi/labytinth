@@ -17,7 +17,7 @@ A primeira linha deve conter as dimensões do labirinto como dois inteiros maior
 
 - Exemplos de linhas válidas:
   - `10 8` para um labirinto de 10 de altura por 8 de largura
-  - `1 2` para um labirinto com apenas entrada e saída
+  - `1 2` indica 1 de altura e 2 de largura, então só há espaço para um labirinto trivial, com apenas entrada e saída
   - `100 100` para um labirinto quadrado com 100 unidades de lado
 - Exemplos de linhas inválidas:
 - `0 0`
