@@ -5,14 +5,14 @@ from dataclasses import dataclass, field
 class Node:
     """A node representing a walkable spot in the maze."""
 
-    i: int
-    j: int
+    y: int
+    x: int
     label: int
     edges: list["Node"] = field(default_factory=list["Node"])
 
 
 def are_neighbors(node: Node, other: Node) -> bool:
-    return abs(node.i - other.i) + abs(node.j - other.j) == 1
+    return abs(node.y - other.y) + abs(node.x - other.x) == 1
 
 
 @dataclass
