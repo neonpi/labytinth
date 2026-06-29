@@ -37,7 +37,7 @@ class Maze:
     def start(self) -> Node:
         return self.nodes[0]
 
-    def end(self) -> Node:
+    def exit(self) -> Node:
         return self.nodes[-1]
 
 
@@ -46,4 +46,4 @@ def is_start(maze: Maze, node: Node) -> bool:
 
 
 def is_end(maze: Maze, node: Node) -> bool:
-    return node == maze.end()
+    return node == maze.exit()
