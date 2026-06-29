@@ -50,5 +50,5 @@ def is_start(maze: Maze, node: Node) -> bool:
     return node == maze.start()
 
 
-def is_end(maze: Maze, node: Node) -> bool:
+def is_exit(maze: Maze, node: Node) -> bool:
     return node == maze.exit()
