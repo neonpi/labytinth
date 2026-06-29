@@ -38,8 +38,8 @@ As demais linhas devem seguir o que foi especificado na primeira linha e possuir
 Seguir o que foi especificado na primeira linha significa conter uniformemente o número de linhas e colunas especificado. Assim, as linhas abaixo são inválidas:
 
 ```text
-E ######
-#    S
+A ######
+#    B
 ```
 
 ### Exemplo válido
