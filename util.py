@@ -4,7 +4,7 @@ from entities import Maze, Node
 def print_constructed_path(path: list[Node]):
     path_string = "A "
 
-    for node in path[:-1]:
+    for node in path[1:-1]:
         path_string += "-> " + str(node)
     
     path_string += "-> B"
