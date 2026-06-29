@@ -10,6 +10,12 @@ class Node:
     label: int
     edges: list["Node"] = field(default_factory=list["Node"])
 
+    def __hash__(self) -> int:
+        return hash((self.x, self.y))
+
+    def __repr__(self) -> str:
+        return str(self.y) + "-" + str(self.x)
+
 
 def are_neighbors(node: Node, other: Node) -> bool:
     return abs(node.y - other.y) + abs(node.x - other.x) == 1
