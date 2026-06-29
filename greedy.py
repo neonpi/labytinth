@@ -1,4 +1,4 @@
-from entities import Maze, Node
+from entities import Maze, Node, is_end
 from util import euclidian_distance, get_visited_dict
 
 
@@ -9,8 +9,10 @@ def greedy_search(maze: Maze) -> list[Node]:
     visited = get_visited_dict(maze)
     path: list[Node] = []
     stack = [maze.start()]
+    found = False
 
-    while stack:
+    while stack and not found:
+        print("stack: %s" % stack)
         node = stack.pop()
         if visited[node]:
             continue
@@ -18,12 +20,21 @@ def greedy_search(maze: Maze) -> list[Node]:
         visited[node] = True
         path.append(node)
 
-        neighbors = sorted(
-            [n for n in node.edges], key=lambda n: euclidian_distance(n, maze.exit())
+        if is_end(maze, node):
+            found = True
+            continue
+
+        unvisited_neighbors = sorted(
+            [n for n in node.edges if not visited[n]],
+            key=lambda n: euclidian_distance(n, maze.exit()),
+            reverse=True
         )
 
-        for neighbor in neighbors:
-            if not visited[neighbor]:
-                stack.append(neighbor)
+        print("%s - %s" % (node, unvisited_neighbors))
 
-    return path
+        for neighbor in unvisited_neighbors:
+            stack.append(neighbor)
+
+    if found:
+        return path
+    return []
