@@ -1,5 +1,5 @@
 from entities import Maze, Node
-from util import distance, get_visited_dict
+from util import euclidian_distance, get_visited_dict
 
 
 def iterative(maze: Maze) -> list[Node]:
@@ -19,7 +19,7 @@ def iterative(maze: Maze) -> list[Node]:
         path.append(node)
 
         neighbors = sorted(
-            [n for n in node.edges], key=lambda n: distance(n, maze.exit())
+            [n for n in node.edges], key=lambda n: euclidian_distance(n, maze.exit())
         )
 
         for neighbor in neighbors:

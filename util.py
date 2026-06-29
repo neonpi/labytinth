@@ -10,7 +10,7 @@ def get_visited_dict(maze: Maze) -> dict[Node, bool]:
     return nodes
 
 
-def distance(source: Node, destination: Node) -> float:
+def euclidian_distance(source: Node, destination: Node) -> float:
     x_delta = destination.x - source.x
     y_delta = destination.y - source.y
-    return (x_delta**2 - y_delta**2) ** (1 / 2)
+    return (x_delta**2 + y_delta**2) ** (1 / 2)
