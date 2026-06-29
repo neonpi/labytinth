@@ -1,6 +1,8 @@
 import sys
 
 from maze_parser import read_maze
+from greedy import greedy_search
+from util import print_constructed_path
 
 input_file = ""
 
@@ -13,3 +15,7 @@ try:
     maze = read_maze(input_file)
 except FileNotFoundError:
     print(f"Error: file '{input_file}' not found")
+    sys.exit(1)
+
+print("Greedy:")
+print_constructed_path(greedy_search(maze))
