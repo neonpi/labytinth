@@ -36,7 +36,7 @@ def read_maze(file_path: str) -> Maze:
                     entry_count += 1
                 if char == "B":
                     exit_count += 1
-                if char == " ":
+                if char != "#":
                     node = Node(x=j, y=i)
                     nodes.append(node)
 
