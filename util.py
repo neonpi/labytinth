@@ -3,7 +3,7 @@ from entities import Maze, Node
 
 def get_visited_dict(maze: Maze) -> dict[Node, bool]:
     """Returns a dict with all nodes mapped to false, signaling that none have been visited yet."""
-    nodes = {}
+    nodes: dict[Node, bool] = {}
     for node in maze.nodes:
         nodes[node] = False
 
