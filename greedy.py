@@ -12,7 +12,6 @@ def greedy_search(maze: Maze) -> list[Node]:
     found = False
 
     while stack and not found:
-        print("stack: %s" % stack)
         node = stack.pop()
         if visited[node]:
             continue
@@ -29,8 +28,6 @@ def greedy_search(maze: Maze) -> list[Node]:
             key=lambda n: euclidian_distance(n, maze.exit()),
             reverse=True
         )
-
-        print("%s - %s" % (node, unvisited_neighbors))
 
         for neighbor in unvisited_neighbors:
             stack.append(neighbor)
