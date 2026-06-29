@@ -2,7 +2,7 @@ from entities import Maze, Node
 from util import euclidian_distance, get_visited_dict
 
 
-def iterative(maze: Maze) -> list[Node]:
+def greedy_search(maze: Maze) -> list[Node]:
     """Performs a greedy search for the maze's exit using the euclidian distance of each
     candidate node to the exit as the heuristic."""
 
