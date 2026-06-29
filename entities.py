@@ -5,14 +5,19 @@ from dataclasses import dataclass, field
 class Node:
     """A node representing a walkable spot in the maze."""
 
-    i: int
-    j: int
-    label: int
+    y: int
+    x: int
     edges: list["Node"] = field(default_factory=list["Node"])
+
+    def __hash__(self) -> int:
+        return hash((self.x, self.y))
+
+    def __repr__(self) -> str:
+        return str(self.y) + "-" + str(self.x)
 
 
 def are_neighbors(node: Node, other: Node) -> bool:
-    return abs(node.i - other.i) + abs(node.j - other.j) == 1
+    return abs(node.y - other.y) + abs(node.x - other.x) == 1
 
 
 @dataclass
@@ -34,12 +39,16 @@ class Maze:
                     node.edges.append(other)
                     other.edges.append(node)
 
+    def start(self) -> Node:
+        return self.nodes[0]
+
+    def exit(self) -> Node:
+        return self.nodes[-1]
+
 
 def is_start(maze: Maze, node: Node) -> bool:
-    """Checks if the node is the start of the given maze"""
-    return maze.nodes.index(node) == 0
+    return node == maze.start()
 
 
-def is_end(maze: Maze, node: Node) -> bool:
-    """Checks if the node is the end of the given maze"""
-    return maze.nodes.index(node) == len(maze.nodes) - 1
+def is_exit(maze: Maze, node: Node) -> bool:
+    return node == maze.exit()
