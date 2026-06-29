@@ -7,7 +7,6 @@ class Node:
 
     y: int
     x: int
-    label: int
     edges: list["Node"] = field(default_factory=list["Node"])
 
     def __hash__(self) -> int:
