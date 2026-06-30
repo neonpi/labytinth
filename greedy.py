@@ -1,5 +1,5 @@
 from entities import Maze, Node, is_exit
-from util import euclidian_distance, get_visited_dict
+from util import distance, get_visited_dict
 
 
 def greedy_search(maze: Maze) -> list[Node]:
@@ -25,7 +25,7 @@ def greedy_search(maze: Maze) -> list[Node]:
 
         unvisited_neighbors = sorted(
             [n for n in node.edges if not visited[n]],
-            key=lambda n: euclidian_distance(n, maze.exit()),
+            key=lambda n: distance(n, maze.exit()),
             reverse=True,
         )
 

@@ -1,5 +1,5 @@
 from entities import Maze, Node, is_exit
-from util import euclidian_distance
+from util import distance
 
 
 def a_star_search(maze: Maze) -> list[Node]:
@@ -14,7 +14,7 @@ def a_star_search(maze: Maze) -> list[Node]:
 
     open.append(maze.start())
     g_evaluation[maze.start()] = 0
-    h_evaluation[maze.start()] = euclidian_distance(maze.start(), maze.exit())
+    h_evaluation[maze.start()] = distance(maze.start(), maze.exit())
     f_evaluation[maze.start()] = g_evaluation[maze.start()] + h_evaluation[maze.start()]
 
     while open:
@@ -37,7 +37,7 @@ def a_star_search(maze: Maze) -> list[Node]:
 
             parent[neighbor] = node
             g_evaluation[neighbor] = temp_g
-            h_evaluation[neighbor] = euclidian_distance(neighbor, maze.exit())
+            h_evaluation[neighbor] = distance(neighbor, maze.exit())
             f_evaluation[neighbor] = g_evaluation[neighbor] + h_evaluation[neighbor]
 
         closed.append(node)
