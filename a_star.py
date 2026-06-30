@@ -1,5 +1,5 @@
 from entities import Maze, Node, is_exit
-from util import distance
+from util import distance, reconstruct_path
 
 
 def a_star_search(maze: Maze) -> list[Node]:
@@ -43,17 +43,3 @@ def a_star_search(maze: Maze) -> list[Node]:
         closed.append(node)
 
     return reconstruct_path(parent, maze.exit())
-
-
-def reconstruct_path(parent: dict[Node, Node], exit: Node) -> list[Node]:
-    """Reconstructs the path built during the search using each node's set parent"""
-    path: list[Node] = []
-    node = exit
-
-    while node in parent.keys():
-        path.append(node)
-        node = parent[node]
-
-    path.append(node)
-    path.reverse()
-    return path

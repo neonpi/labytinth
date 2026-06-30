@@ -25,3 +25,17 @@ def distance(source: Node, destination: Node) -> float:
     x_delta = source.x - destination.x
     y_delta = source.y - destination.y
     return abs(x_delta) + abs(y_delta)
+
+
+def reconstruct_path(parent: dict[Node, Node], exit: Node) -> list[Node]:
+    """Reconstructs the path built during the search using each node's set parent"""
+    path: list[Node] = []
+    node = exit
+
+    while node in parent.keys():
+        path.append(node)
+        node = parent[node]
+
+    path.append(node)
+    path.reverse()
+    return path

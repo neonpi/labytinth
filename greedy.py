@@ -1,5 +1,5 @@
 from entities import Maze, Node, is_exit
-from util import distance, get_visited_dict
+from util import distance, get_visited_dict, reconstruct_path
 
 
 def greedy_search(maze: Maze) -> list[Node]:
@@ -7,9 +7,9 @@ def greedy_search(maze: Maze) -> list[Node]:
     candidate node to the exit as the heuristic."""
 
     visited = get_visited_dict(maze)
-    path: list[Node] = []
     stack = [maze.start()]
     found = False
+    parent: dict[Node, Node] = {}
 
     while stack and not found:
         node = stack.pop()
@@ -17,7 +17,6 @@ def greedy_search(maze: Maze) -> list[Node]:
             continue
 
         visited[node] = True
-        path.append(node)
 
         if is_exit(maze, node):
             found = True
@@ -30,8 +29,7 @@ def greedy_search(maze: Maze) -> list[Node]:
         )
 
         for neighbor in unvisited_neighbors:
+            parent[neighbor] = node
             stack.append(neighbor)
 
-    if found:
-        return path
-    return []
+    return reconstruct_path(parent, maze.exit())
