@@ -1,7 +1,8 @@
 import sys
 
-from maze_parser import read_maze
+from a_star import a_star_search
 from greedy import greedy_search
+from maze_parser import read_maze
 from util import print_constructed_path
 
 input_file = ""
@@ -19,3 +20,5 @@ except FileNotFoundError:
 
 print("Greedy:")
 print_constructed_path(greedy_search(maze))
+print("A*:")
+print_constructed_path(a_star_search(maze))
