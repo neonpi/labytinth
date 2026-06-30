@@ -5,7 +5,6 @@ from util import euclidian_distance
 def a_star_search(maze: Maze) -> list[Node]:
     """Performs the A* search of start to exit of the given maze returning the path constructed
     during the process"""
-    path: list[Node] = []
     open: list[Node] = []
     closed: list[Node] = []
     parent: dict[Node, Node] = {}
@@ -21,7 +20,6 @@ def a_star_search(maze: Maze) -> list[Node]:
     while open:
         node = min(open, key=lambda n: f_evaluation[n])
         open.remove(node)
-        path.append(node)
 
         if is_exit(maze, node):
             break
@@ -44,4 +42,18 @@ def a_star_search(maze: Maze) -> list[Node]:
 
         closed.append(node)
 
+    return reconstruct_path(parent, maze.exit())
+
+
+def reconstruct_path(parent: dict[Node, Node], exit: Node) -> list[Node]:
+    """Reconstructs the path built during the search using each node's set parent"""
+    path: list[Node] = []
+    node = exit
+
+    while node in parent.keys():
+        path.append(node)
+        node = parent[node]
+
+    path.append(node)
+    path.reverse()
     return path
