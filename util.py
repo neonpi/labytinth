@@ -20,7 +20,7 @@ def get_visited_dict(maze: Maze) -> dict[Node, bool]:
     return nodes
 
 
-def distance(source: Node, destination: Node) -> float:
+def distance(source: Node, destination: Node) -> int:
     """Returns the Manhattan distance between the two given nodes"""
     x_delta = source.x - destination.x
     y_delta = source.y - destination.y
