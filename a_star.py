@@ -9,8 +9,8 @@ def a_star_search(maze: Maze) -> list[Node]:
     closed: list[Node] = []
     parent: dict[Node, Node] = {}
     g_evaluation: dict[Node, int] = {}
-    h_evaluation: dict[Node, float] = {}
-    f_evaluation: dict[Node, float] = {}
+    h_evaluation: dict[Node, int] = {}
+    f_evaluation: dict[Node, int] = {}
 
     open.append(maze.start())
     g_evaluation[maze.start()] = 0
