@@ -3,6 +3,7 @@ import sys
 from a_star import a_star_search
 from backtracking import backtracking_search
 from bfs import breadth_first_search
+from dfs import depth_first_search
 from greedy import greedy_search
 from ida_star import ida_star_search
 from maze_parser import read_maze
@@ -25,6 +26,8 @@ print("Backtracking:")
 print_constructed_path(backtracking_search(maze))
 print("BFS:")
 print_constructed_path(breadth_first_search(maze))
+print("DFS:")
+print_constructed_path(depth_first_search(maze))
 print("Greedy:")
 print_constructed_path(greedy_search(maze))
 print("A*:")
