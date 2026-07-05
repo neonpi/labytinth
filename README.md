@@ -17,7 +17,7 @@ A primeira linha deve conter as dimensões do labirinto como dois inteiros maior
 
 - Exemplos de linhas válidas:
   - `10 8` para um labirinto de 10 de altura por 8 de largura
-  - `1 2` indica 1 de altura e 2 de largura, então só há espaço para um labirinto trivial, com apenas entrada e saída
+  - `1 2` indica 1 de altura e 2 de largura, ou seja, um labirinto trivial, com apenas entrada e saída
   - `100 100` para um labirinto quadrado com 100 unidades de lado
 - Exemplos de linhas inválidas:
 - `0 0`
@@ -27,9 +27,8 @@ A primeira linha deve conter as dimensões do labirinto como dois inteiros maior
 
 As demais linhas devem seguir o que foi especificado na primeira linha e possuir apenas os caracteres abaixo
 
-- `#` para paredes
-- ` ` (espaço em branco) para espaços caminháveis (livres)
-  - Não deve haver espaços caminháveis nas bordas do labirinto, ou seja, as bordas só podem conter paredes
+- `1` para paredes
+- `0` para espaços caminháveis (livres)
 - `A` para a entrada
   - A entrada deve estar posicionada no canto superior esquerdo do labirinto
 - `B` para a saída
@@ -38,18 +37,17 @@ As demais linhas devem seguir o que foi especificado na primeira linha e possuir
 Seguir o que foi especificado na primeira linha significa conter uniformemente o número de linhas e colunas especificado. Assim, as linhas abaixo são inválidas:
 
 ```text
-A ######
-#    B
+A0111111 (8 colunas)
+10000B   (6 colunas)
 ```
 
 ### Exemplo válido
 
 ```text
-#######
-#A##  #
-# #   #
-#   #B#
-#######
+3 5
+A1100
+01000
+0001B
 ```
 
 Ao tentar executar o programa com um arquivo inválido uma mensagem de erro será impressa apontando qual foi o problema detectado
