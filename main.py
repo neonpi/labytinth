@@ -1,6 +1,7 @@
 import sys
 
 from a_star import a_star_search
+from backtracking import backtracking_search
 from greedy import greedy_search
 from ida_star import ida_star_search
 from maze_parser import read_maze
@@ -19,6 +20,8 @@ except FileNotFoundError:
     print(f"Error: file '{input_file}' not found")
     sys.exit(1)
 
+print("Backtracking:")
+print_constructed_path(backtracking_search(maze))
 print("Greedy:")
 print_constructed_path(greedy_search(maze))
 print("A*:")
