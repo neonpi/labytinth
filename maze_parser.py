@@ -14,8 +14,8 @@ def read_maze(file_path: str) -> Maze:
     with open(file=file_path, mode="r", encoding="utf_8") as file:
         dimensions_line = file.readline()
         dimensions = [int(number) for number in dimensions_line.strip().split(" ")]
-        width = dimensions[0]
-        height = dimensions[1]
+        height = dimensions[0]
+        width = dimensions[1]
         validate_maze_dimensions(width, height)
 
         lines = [line.replace("\n", "").replace("\r", "") for line in file.readlines()]
