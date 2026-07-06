@@ -12,6 +12,11 @@ class Node:
     def __hash__(self) -> int:
         return hash((self.x, self.y))
 
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, Node):
+            return NotImplemented
+        return self.x == other.x and self.y == other.y
+
     def __repr__(self) -> str:
         return str(self.y) + "-" + str(self.x)
 
