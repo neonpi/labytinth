@@ -14,12 +14,10 @@ def print_constructed_path(path: list[Node]):
 
 def print_search_result(path: list[Node], stats: SearchStats, elapsed_time: float):
     """Prints every property required by the spec for a single search method's result."""
-    depth = len(path) - 1
-    cost = depth  # every edge has unit cost
+    depth = len(path) - 1  # every edge has unit cost, so depth equals cost
 
     print_constructed_path(path)
-    print(f"Profundidade: {depth}")
-    print(f"Custo: {cost}")
+    print(f"Custo/Profundidade: {depth}")
     print(f"Nós expandidos: {stats.nodes_expanded}")
     print(f"Nós visitados: {stats.nodes_visited}")
     print(f"Fator de ramificação médio: {stats.branching_factor():.2f}")
