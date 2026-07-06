@@ -16,10 +16,6 @@ class Node:
         return str(self.y) + "-" + str(self.x)
 
 
-def are_neighbors(node: Node, other: Node) -> bool:
-    return abs(node.y - other.y) + abs(node.x - other.x) == 1
-
-
 @dataclass
 class Maze:
     """Maze represented as a graph with its recorded dimensions."""
@@ -33,11 +29,12 @@ class Maze:
         self.height = height
         self.nodes = nodes
 
-        for i, node in enumerate(self.nodes):
-            for other in self.nodes[i:]:
-                if are_neighbors(node, other):
-                    node.edges.append(other)
-                    other.edges.append(node)
+        by_coords = {(node.x, node.y): node for node in self.nodes}
+        for node in self.nodes:
+            for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+                neighbor = by_coords.get((node.x + dx, node.y + dy))
+                if neighbor is not None:
+                    node.edges.append(neighbor)
 
     def start(self) -> Node:
         return self.nodes[0]
