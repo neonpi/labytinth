@@ -12,6 +12,7 @@ def _dfs(
     g: int,
     threshold: int,
     stats: SearchStats,
+    best_g: dict[Node, int],
 ) -> tuple[bool, int]:
     """DFS search used in IDA*.
 
@@ -22,6 +23,9 @@ def _dfs(
     * g - cost from root to current node
     * threshold - IDA*'s current threshold value
     * stats - stats accumulator, mutated across recursive calls and iterations
+    * best_g - best (lowest) g seen for each node during this iteration, used to
+      avoid re-exploring a node through an equal-or-worse path (grid mazes have
+      many cycles/alternate paths, so ancestor-only cycle checks blow up)
 
     Return - if no goal was found, returns
     """
@@ -31,6 +35,7 @@ def _dfs(
         return (False, f)
 
     stats.nodes_expanded += 1
+    best_g[node] = g
 
     if is_exit(maze, node):
         return (True, threshold)
@@ -42,8 +47,12 @@ def _dfs(
         if neighbor in parent:
             continue
 
+        neighbor_g = g + 1
+        if neighbor in best_g and best_g[neighbor] <= neighbor_g:
+            continue
+
         parent[neighbor] = node
-        found, new_threshold = _dfs(maze, neighbor, parent, g + 1, threshold, stats)
+        found, new_threshold = _dfs(maze, neighbor, parent, neighbor_g, threshold, stats, best_g)
 
         if found:
             return (True, threshold)
@@ -65,7 +74,8 @@ def ida_star_search(maze: Maze) -> tuple[list[Node], SearchStats]:
 
     while not found:
         parent.clear()
-        found, new_threshold = _dfs(maze, maze.start(), parent, 0, threshold, stats)
+        best_g: dict[Node, int] = {}
+        found, new_threshold = _dfs(maze, maze.start(), parent, 0, threshold, stats, best_g)
 
         if found:
             continue
