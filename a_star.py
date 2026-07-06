@@ -1,8 +1,9 @@
 from entities import Maze, Node, is_exit
+from stats import SearchStats
 from util import distance, reconstruct_path
 
 
-def a_star_search(maze: Maze) -> list[Node]:
+def a_star_search(maze: Maze) -> tuple[list[Node], SearchStats]:
     """Performs the A* search of start to exit of the given maze returning the path constructed
     during the process"""
     open: list[Node] = []
@@ -11,6 +12,7 @@ def a_star_search(maze: Maze) -> list[Node]:
     g_evaluation: dict[Node, int] = {}
     h_evaluation: dict[Node, int] = {}
     f_evaluation: dict[Node, int] = {}
+    stats = SearchStats()
 
     open.append(maze.start())
     g_evaluation[maze.start()] = 0
@@ -20,11 +22,13 @@ def a_star_search(maze: Maze) -> list[Node]:
     while open:
         node = min(open, key=lambda n: f_evaluation[n])
         open.remove(node)
+        stats.nodes_expanded += 1
 
         if is_exit(maze, node):
             break
 
         for neighbor in node.edges:
+            stats.nodes_visited += 1
             if neighbor in closed:
                 continue
 
@@ -42,4 +46,4 @@ def a_star_search(maze: Maze) -> list[Node]:
 
         closed.append(node)
 
-    return reconstruct_path(parent, maze.exit())
+    return reconstruct_path(parent, maze.exit()), stats

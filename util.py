@@ -1,4 +1,5 @@
 from entities import Maze, Node
+from stats import SearchStats
 
 
 def print_constructed_path(path: list[Node]):
@@ -9,6 +10,20 @@ def print_constructed_path(path: list[Node]):
 
     path_string += " -> B"
     print(path_string)
+
+
+def print_search_result(path: list[Node], stats: SearchStats, elapsed_time: float):
+    """Prints every property required by the spec for a single search method's result."""
+    depth = len(path) - 1
+    cost = depth  # every edge has unit cost
+
+    print_constructed_path(path)
+    print(f"Profundidade: {depth}")
+    print(f"Custo: {cost}")
+    print(f"Nós expandidos: {stats.nodes_expanded}")
+    print(f"Nós visitados: {stats.nodes_visited}")
+    print(f"Fator de ramificação médio: {stats.branching_factor():.2f}")
+    print(f"Tempo de execução: {elapsed_time:.6f}s")
 
 
 def get_visited_dict(maze: Maze) -> dict[Node, bool]:

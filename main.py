@@ -1,4 +1,5 @@
 import sys
+import time
 
 from a_star import a_star_search
 from backtracking import backtracking_search
@@ -8,7 +9,7 @@ from greedy import greedy_search
 from ida_star import ida_star_search
 from maze_parser import read_maze
 from ordered_search import ordered_search
-from util import print_constructed_path
+from util import print_search_result
 
 input_file = ""
 
@@ -23,17 +24,20 @@ except FileNotFoundError:
     print(f"Error: file '{input_file}' not found")
     sys.exit(1)
 
-print("Backtracking:")
-print_constructed_path(backtracking_search(maze))
-print("Busca em Largura:")
-print_constructed_path(breadth_first_search(maze))
-print("Busca em Profundidade (Limitada):")
-print_constructed_path(depth_limited_search(maze))
-print("Busca Ordenada:")
-print_constructed_path(ordered_search(maze))
-print("Busca Gulosa:")
-print_constructed_path(greedy_search(maze))
-print("Busca A*:")
-print_constructed_path(a_star_search(maze))
-print("Busca IDA*:")
-print_constructed_path(ida_star_search(maze))
+
+def run_search(name, search_fn):
+    print(f"{name}:")
+    start_time = time.perf_counter()
+    path, stats = search_fn(maze)
+    elapsed_time = time.perf_counter() - start_time
+    print_search_result(path, stats, elapsed_time)
+    print()
+
+
+run_search("Backtracking", backtracking_search)
+run_search("Busca em Largura", breadth_first_search)
+run_search("Busca em Profundidade (Limitada)", depth_limited_search)
+run_search("Busca Ordenada", ordered_search)
+run_search("Busca Gulosa", greedy_search)
+run_search("Busca A*", a_star_search)
+run_search("Busca IDA*", ida_star_search)
