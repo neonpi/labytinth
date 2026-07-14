@@ -49,5 +49,3 @@ A1100
 01000
 0001B
 ```
-
-Ao tentar executar o programa com um arquivo inválido uma mensagem de erro será impressa apontando qual foi o problema detectado
