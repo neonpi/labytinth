@@ -49,3 +49,7 @@ A1100
 01000
 0001B
 ```
+
+## Uso
+
+Há duas formas de executar o programa em plataformas Linux com arquitetura x86-64. Se possuir o executável, rode `./dist/main/main <input>`. Se possuir o Python >=3.14 instalado, execute `python3 main.py <input>`. Se nenhum input for dado ao programa ele será executado usando o arquivo `8x8-valid-input.txt` como instância.
